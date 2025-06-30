@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choti Maggi, Badi Coding</title>
+    <style>
+        body {
+            font-family: monospace, sans-serif;
+            background-color: #f5f0e1; /* Kitchen Counter Color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #e07a5f; /* Maggi Color */
+        }
+
+        .maggi-bowl {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: steam 2s linear infinite;
+            position: relative; /* For Steam */
+        }
+
+        @keyframes steam {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-30px); opacity: 0; }
+        }
+        .maggi-bowl::before, .maggi-bowl::after {
+            content: "</>"; /* Alternatively use 💨 emoji */
+            position: absolute;
+            top: -1em; /* Position above the bowl */
+            font-size: 0.7em;
+            color: #999;
+            opacity: 0;
+            animation: steamSymbol 2s linear infinite;
+        }
+
+        .maggi-bowl::before {
+            left: 10%;
+            animation-delay: 0.5s;
+        }
+
+        .maggi-bowl::after {
+            right: 10%;
+            animation-delay: 1s;
+        }
+
+        @keyframes steamSymbol {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-40px) translateX(10px); opacity: 0; }
+        }
+
+
+        #timer {
+            font-size: 1.5em;
+            color: #3d405b;
+            margin-bottom: 20px;
+        }
+
+        #code-challenge {
+            width: 80%;
+            margin: 0 auto;
+            text-align: left;
+            font-size: 1em;
+            background-color: #f4f4f4;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow-x: auto; /* For long lines of code */
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+
+        #code-input {
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: monospace;
+            display: block;
+            resize: vertical;
+            min-height: 100px;
+
+        }
+
+
+        button {
+            background-color: #f2cc8f; /* Maggi Packet Color */
+            color: #333;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e07a5f;
+            color: white;
+        }
+
+        #message {
+            font-size: 1.2em;
+            margin-top: 20px;
+            color: #e07a5f;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            #code-challenge, #code-input {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Choti Maggi, Badi Coding</h1>
+        <div class="maggi-bowl">🍜</div>
+        <div id="timer">2:00</div>
+        <div id="code-challenge">
+            // Fix the bug in this Javascript function <br><br>
+            function calculateSum(a, b) {<br>
+               return a + b;<br>
+            }<br><br>
+            // Expected Output: 8 (if a=5, b=3)<br>
+            // Current Output: NaN (if a=5, b=3)
+        </div>
+
+        <textarea id="code-input" placeholder="Type your code here..."></textarea>
+
+        <button id="submit-button">Submit</button>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        let timeLeft = 120; // 2 minutes in seconds
+        let timerInterval;
+        let submitted = false;
+
+        const timerDisplay = document.getElementById('timer');
+        const messageDisplay = document.getElementById('message');
+        const submitButton = document.getElementById('submit-button');
+        const codeChallengeArea = document.getElementById('code-challenge');
+        const codeInputArea = document.getElementById('code-input');
+
+
+        function updateTimer() {
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            timerDisplay.textContent = `${minutes}:${seconds}`;
+
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                if (!submitted) {
+                    messageDisplay.textContent = "🥵 Maggi overcooked! Time's up!";
+                }
+                submitButton.disabled = true;
+                codeInputArea.disabled = true;
+            } else {
+                timeLeft--;
+            }
+        }
+
+        submitButton.addEventListener('click', () => {
+            submitted = true;
+            clearInterval(timerInterval);
+            messageDisplay.textContent = "🎉 Code served hot and spicy!";
+            submitButton.disabled = true;
+            codeInputArea.disabled = true;
+        });
+
+        timerInterval = setInterval(updateTimer, 1000);
+
+        // Initial call to updateTimer to avoid delay
+        updateTimer();
+    </script>
+</body>
+</html>
+
+

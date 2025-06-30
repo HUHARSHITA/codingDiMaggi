@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Coding di Maggie🍜</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Pyodide -->
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+</head>
+
+<body>
+<button id="mute-toggle" class="mute-button" title="Toggle Music 🔈">🔊</button>
+  <div id="orientation-warning">Please use landscape mode for the best experience!</div>
+<audio id="bgMusic" src="bg.mp3" loop></audio>
+<audio id="correctSound" src="correct.mp3"></audio>
+<audio id="wrongSound" src="wrong.mp3"></audio>
+<audio id="cookedSound" src="yum.mp3"></audio>
+<audio id="uncookedSound" src="bad.mp3"></audio>
+
+  <div id="steam-container">
+    <div class="steam s1"></div>
+    <div class="steam s2"></div>
+    <div class="steam s3"></div>
+  </div>
+
+
+  <div class="container">
+    <h1>Coding di Maggi 🍜</h1>
+    <img id="maggi-bowl" class="boiling" src="boil.png" alt="Boiling Bowl" />
+    <div id="timer">02:00</div>
+    <div id="score">Score: 0</div>
+    <p id="question-prompt"></p>
+
+    <textarea id="code-input" rows="10" cols="50"></textarea>
+    <div id="feedback"></div>
+    <button id="submit-button">Serve My Code 🍜</button>
+
+    <div id="final-results">
+      <h2>Your Maggi Coding Skills:</h2>
+      <img id="final-maggi-icon" src="" alt="Final Maggi Icon" />
+      <p id="final-score"></p>
+      <p id="final-percentage"></p>
+      <p id="final-message"></p>
+      <button id="restart-button">Restart the Maggi!</button>
+    </div>
+  </div>
+
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
