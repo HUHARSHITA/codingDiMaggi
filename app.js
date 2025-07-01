@@ -220,6 +220,15 @@ bgMusic.play().catch(() => {
 
 submitButtonElement.addEventListener('click', submitCode);
 restartButtonElement.addEventListener('click', resetGame);
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    bgMusic.pause();
+  } else {
+    if (muteButton.textContent === "🔊") {
+      bgMusic.play().catch(() => {});
+    }
+  }
+});
 
 function checkOrientation() {
   orientationWarningElement.style.display = window.innerWidth < window.innerHeight ? 'block' : 'none';
